@@ -11,7 +11,7 @@ class HumanPlayer
   end
 
   def get_guess
-    puts "Enter your guess"
+    puts "Enter 4 digits (1-6), e.g., 1234"
     loop do
       guess = check_guess(gets.chomp)
       break unless guess == false
