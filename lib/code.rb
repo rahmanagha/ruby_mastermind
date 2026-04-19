@@ -1,4 +1,7 @@
 class Code
+
+  include Validatable
+
   COLORS = [nil,"red", "green", "blue", "yellow", "white", "black"]
   
   def initialize
@@ -11,6 +14,10 @@ class Code
     secret_code
   end
 
+  def self.numbers_to_colors(numbers)
+    numbers.map {|number| COLORS[number]}
+  end
+  
   def evaluate(guess)
     return false unless valid_guess?(guess)
     response = {perfect_match: 0, color_match: 0}
@@ -54,13 +61,4 @@ class Code
     new_array
   end
 
-  def valid_guess?(guess)
-    items_in_range = guess.select {|number| number > 0 && number < 7}
-    return true if guess.length == 4 && items_in_range.length == 4
-    return false
-  end
-
-  def self.numbers_to_colors(numbers)
-    numbers.map {|number| COLORS[number]}
-  end
 end  
