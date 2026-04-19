@@ -1,8 +1,9 @@
 require_relative "validatable"
 
 class Code
-
   include Validatable
+
+  attr_reader :secret
 
   COLORS = [nil,"red", "green", "blue", "yellow", "white", "black"]
   
