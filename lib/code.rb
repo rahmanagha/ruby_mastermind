@@ -30,6 +30,8 @@ class Code
     response
   end
 
+  private
+
   def count_perfect_matches(guess)
     matches = 0
     guess.each_with_index do |number, index|
