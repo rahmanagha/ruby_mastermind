@@ -39,6 +39,7 @@ class Game
     if won?(feedback)
       puts "Congratulations! You guessed correctly"
       puts "The secret was: #{Code.numbers_to_colors(code.secret).join(', ')}"
+      true
     end
   end
 
