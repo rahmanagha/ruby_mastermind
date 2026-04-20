@@ -2,6 +2,7 @@ require_relative "validatable"
 
 class Code
   include Validatable
+  include Evaluatable
 
   attr_reader :secret
 
@@ -21,49 +22,9 @@ class Code
     numbers.map {|number| COLORS[number]}
   end
   
-  def evaluate(guess)
+  def evaluate_code(guess)
     return false unless valid_guess?(guess)
-    response = {perfect_match: 0, color_match: 0}
-    response[:perfect_match] = count_perfect_matches(guess)
-    edited_guess, edited_secret = remove_perfect_matches(guess)
-    response[:color_match] = count_color_matches(edited_guess, edited_secret)
-    response
-  end
-
-  private
-
-  def count_perfect_matches(guess)
-    matches = 0
-    guess.each_with_index do |number, index|
-      matches+=1 if guess[index] == @secret[index]
-    end
-    matches
-  end
-
-  def count_color_matches(guess,secret)
-    matches = 0
-    guess.each_with_index do |number, index|
-      if secret.include?(number)
-        matches+=1
-        delete_index = secret.find_index(number)
-        secret.delete_at(delete_index)
-      end
-    end
-    matches
-  end
-
-  def remove_perfect_matches(guess)
-    edited_guess = edit_array(guess, @secret)
-    edited_secret = edit_array(@secret, guess)
-    [edited_guess, edited_secret]
-  end
-
-  def edit_array(edited_array, base_array)
-    new_array = []
-    edited_array.each_with_index do |number, index|
-      new_array.push(number) if number != base_array[index]
-    end
-    new_array
+    evaluate(@secret, guess)
   end
 
 end  
