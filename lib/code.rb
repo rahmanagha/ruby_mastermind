@@ -1,4 +1,5 @@
 require_relative "validatable"
+require_relative "evaluatable"
 
 class Code
   include Validatable
