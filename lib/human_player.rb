@@ -6,7 +6,7 @@ class HumanPlayer
 
   def check_guess(string)
     converted_array = string.split("").map {|number| number.to_i}
-    return converted_array if valid_guess?(converted_array)
+    return converted_array if valid_input?(converted_array)
     false
   end
 

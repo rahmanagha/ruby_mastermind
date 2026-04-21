@@ -24,7 +24,7 @@ class Code
   end
   
   def evaluate_code(guess)
-    return false unless valid_guess?(guess)
+    return false unless valid_input?(guess)
     evaluate(@secret, guess)
   end
 
