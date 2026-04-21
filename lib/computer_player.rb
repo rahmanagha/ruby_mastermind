@@ -30,6 +30,8 @@ class ComputerPlayer
     @possible_codes.select! {|possible_code| evaluate(possible_code, guess) == feedback}
   end
 
+  private
+
   def worst_case_remaining(guess)
     possible_responses_count = Hash.new(0)
     @possible_codes.each do |secret|
