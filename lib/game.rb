@@ -12,7 +12,7 @@ class Game
     until turn == 12
       display_turn(turn)
       guess = human.get_guess
-      feedback = code.evaluate(guess)
+      feedback = code.evaluate_code(guess)
       break if handle_win(code, feedback)
       display_feedback(feedback)
       turn += 1
